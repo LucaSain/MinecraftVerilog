@@ -1,0 +1,21 @@
+# compile.ys
+
+# 1. Read the input Verilog
+read_verilog counter.v
+
+# 2. Synthesize input to generic logic (clean up the code)
+synth -top counter
+
+# 3. Map Flip-Flops to your library's DFF cell
+dfflibmap -liberty primitives.lib
+
+# 4. Map Logic Gates (NAND, NOT, XOR) to your library
+# This forces Yosys to ONLY use the cells you defined
+abc -liberty primitives.lib
+
+# 5. Clean up unused signals
+clean
+
+# 6. EXPORT TO JSON (The Magic Step)
+# This gives you a structured list of gates and connections
+write_json counter.json

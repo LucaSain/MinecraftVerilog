@@ -1,0 +1,97 @@
+[00:10:14] [Server thread/INFO]: luca issued server command: //undo
+[00:10:16] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[00:10:16] [WorldEdit Task Executor - 96/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[00:10:18] [Server thread/INFO]: luca issued server command: //paste -a
+[00:10:50] [Server thread/INFO]: luca issued server command: //undo
+[00:10:52] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[00:10:52] [WorldEdit Task Executor - 96/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[00:10:53] [Server thread/INFO]: luca issued server command: //paste -a
+[00:12:19] [Server thread/INFO]: luca lost connection: Disconnected
+[00:12:19] [Server thread/INFO]: luca left the game
+[00:12:45] [Server thread/INFO]: Stopping the server
+[00:12:45] [Server thread/INFO]: Stopping server
+[00:12:45] [Server thread/INFO]: [Essentials] Disabling Essentials v2.22.0-dev+53-9ad754b
+[00:12:45] [Server thread/INFO]: [EssentialsSelectors] Disabling EssentialsSelectors v2.1.0
+[00:12:45] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v7.3.18+7298-4383852
+[00:12:45] [Server thread/INFO]: Unregistering com.sk89q.worldedit.bukkit.BukkitServerInterface from WorldEdit
+[00:12:45] [Server thread/INFO]: Saving players
+[00:12:45] [Server thread/INFO]: Saving worlds
+[00:12:45] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[00:12:45] [Dimension-Data-IO-Worker-2/ERROR]: Could not save data to chunks.dat
+java.nio.file.NoSuchFileException: ./world/data/chunks.dat
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92) ~[?:?]
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106) ~[?:?]
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111) ~[?:?]
+	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261) ~[?:?]
+	at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:482) ~[?:?]
+	at java.base/java.nio.file.Files.newOutputStream(Files.java:228) ~[?:?]
+	at net.minecraft.nbt.NbtIo.writeCompressed(NbtIo.java:77) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at net.minecraft.world.level.storage.DimensionDataStorage.tryWrite(DimensionDataStorage.java:201) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at net.minecraft.world.level.storage.DimensionDataStorage.lambda$scheduleSave$4(DimensionDataStorage.java:169) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+[00:12:45] [Dimension-Data-IO-Worker-3/ERROR]: Could not save data to raids.dat
+java.nio.file.NoSuchFileException: ./world/data/raids.dat
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92) ~[?:?]
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106) ~[?:?]
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111) ~[?:?]
+	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261) ~[?:?]
+	at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:482) ~[?:?]
+	at java.base/java.nio.file.Files.newOutputStream(Files.java:228) ~[?:?]
+	at net.minecraft.nbt.NbtIo.writeCompressed(NbtIo.java:77) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at net.minecraft.world.level.storage.DimensionDataStorage.tryWrite(DimensionDataStorage.java:201) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at net.minecraft.world.level.storage.DimensionDataStorage.lambda$scheduleSave$4(DimensionDataStorage.java:169) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world'
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world' in 0.01s
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world'
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world'
+[00:12:45] [Server thread/ERROR]: Failed to save level ./world
+java.nio.file.NoSuchFileException: ./world/level15515909794444533784.dat
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92) ~[?:?]
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106) ~[?:?]
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111) ~[?:?]
+	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261) ~[?:?]
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:380) ~[?:?]
+	at java.base/java.nio.file.Files.createFile(Files.java:658) ~[?:?]
+	at java.base/java.nio.file.TempFileHelper.create(TempFileHelper.java:136) ~[?:?]
+	at java.base/java.nio.file.TempFileHelper.createTempFile(TempFileHelper.java:159) ~[?:?]
+	at java.base/java.nio.file.Files.createTempFile(Files.java:879) ~[?:?]
+	at net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess.saveLevelData(LevelStorageSource.java:520) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess.saveDataTag(LevelStorageSource.java:513) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at net.minecraft.server.level.ServerLevel.save(ServerLevel.java:1474) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at net.minecraft.server.MinecraftServer.saveAllChunks(MinecraftServer.java:954) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at net.minecraft.server.MinecraftServer.stopServer(MinecraftServer.java:1061) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at net.minecraft.server.dedicated.DedicatedServer.stopServer(DedicatedServer.java:908) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1378) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:388) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+[00:12:45] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_nether]'/minecraft:the_nether
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nether'
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_nether' in 0.00s
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nether'
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nether'
+[00:12:45] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_the_end]'/minecraft:the_end
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_the_end'
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_the_end' in 0.00s
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_the_end'
+[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_the_end'
+[00:12:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[00:12:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[00:12:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[00:12:45] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+[00:12:45] [Server thread/INFO]: Waiting for all RegionFile I/O tasks to complete...
+[00:12:45] [Server thread/INFO]: All RegionFile I/O tasks to complete
+[00:12:45] [Server thread/INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+[00:12:45] [Server thread/INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
