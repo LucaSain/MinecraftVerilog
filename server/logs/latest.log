@@ -1,97 +1,233 @@
-[00:10:14] [Server thread/INFO]: luca issued server command: //undo
-[00:10:16] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
-[00:10:16] [WorldEdit Task Executor - 96/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
-[00:10:18] [Server thread/INFO]: luca issued server command: //paste -a
-[00:10:50] [Server thread/INFO]: luca issued server command: //undo
-[00:10:52] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
-[00:10:52] [WorldEdit Task Executor - 96/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
-[00:10:53] [Server thread/INFO]: luca issued server command: //paste -a
-[00:12:19] [Server thread/INFO]: luca lost connection: Disconnected
-[00:12:19] [Server thread/INFO]: luca left the game
-[00:12:45] [Server thread/INFO]: Stopping the server
-[00:12:45] [Server thread/INFO]: Stopping server
-[00:12:45] [Server thread/INFO]: [Essentials] Disabling Essentials v2.22.0-dev+53-9ad754b
-[00:12:45] [Server thread/INFO]: [EssentialsSelectors] Disabling EssentialsSelectors v2.1.0
-[00:12:45] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v7.3.18+7298-4383852
-[00:12:45] [Server thread/INFO]: Unregistering com.sk89q.worldedit.bukkit.BukkitServerInterface from WorldEdit
-[00:12:45] [Server thread/INFO]: Saving players
-[00:12:45] [Server thread/INFO]: Saving worlds
-[00:12:45] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
-[00:12:45] [Dimension-Data-IO-Worker-2/ERROR]: Could not save data to chunks.dat
-java.nio.file.NoSuchFileException: ./world/data/chunks.dat
-	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92) ~[?:?]
-	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106) ~[?:?]
-	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111) ~[?:?]
-	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261) ~[?:?]
-	at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:482) ~[?:?]
-	at java.base/java.nio.file.Files.newOutputStream(Files.java:228) ~[?:?]
-	at net.minecraft.nbt.NbtIo.writeCompressed(NbtIo.java:77) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at net.minecraft.world.level.storage.DimensionDataStorage.tryWrite(DimensionDataStorage.java:201) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at net.minecraft.world.level.storage.DimensionDataStorage.lambda$scheduleSave$4(DimensionDataStorage.java:169) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
-	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
-[00:12:45] [Dimension-Data-IO-Worker-3/ERROR]: Could not save data to raids.dat
-java.nio.file.NoSuchFileException: ./world/data/raids.dat
-	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92) ~[?:?]
-	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106) ~[?:?]
-	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111) ~[?:?]
-	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261) ~[?:?]
-	at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:482) ~[?:?]
-	at java.base/java.nio.file.Files.newOutputStream(Files.java:228) ~[?:?]
-	at net.minecraft.nbt.NbtIo.writeCompressed(NbtIo.java:77) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at net.minecraft.world.level.storage.DimensionDataStorage.tryWrite(DimensionDataStorage.java:201) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at net.minecraft.world.level.storage.DimensionDataStorage.lambda$scheduleSave$4(DimensionDataStorage.java:169) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
-	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world'
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world' in 0.01s
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world'
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world'
-[00:12:45] [Server thread/ERROR]: Failed to save level ./world
-java.nio.file.NoSuchFileException: ./world/level15515909794444533784.dat
-	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92) ~[?:?]
-	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106) ~[?:?]
-	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111) ~[?:?]
-	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261) ~[?:?]
-	at java.base/java.nio.file.Files.newByteChannel(Files.java:380) ~[?:?]
-	at java.base/java.nio.file.Files.createFile(Files.java:658) ~[?:?]
-	at java.base/java.nio.file.TempFileHelper.create(TempFileHelper.java:136) ~[?:?]
-	at java.base/java.nio.file.TempFileHelper.createTempFile(TempFileHelper.java:159) ~[?:?]
-	at java.base/java.nio.file.Files.createTempFile(Files.java:879) ~[?:?]
-	at net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess.saveLevelData(LevelStorageSource.java:520) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess.saveDataTag(LevelStorageSource.java:513) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at net.minecraft.server.level.ServerLevel.save(ServerLevel.java:1474) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at net.minecraft.server.MinecraftServer.saveAllChunks(MinecraftServer.java:954) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at net.minecraft.server.MinecraftServer.stopServer(MinecraftServer.java:1061) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at net.minecraft.server.dedicated.DedicatedServer.stopServer(DedicatedServer.java:908) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1378) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:388) ~[paper-1.21.11.jar:1.21.11-88-8556cb4]
-	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
-[00:12:45] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_nether]'/minecraft:the_nether
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nether'
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_nether' in 0.00s
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nether'
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nether'
-[00:12:45] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_the_end]'/minecraft:the_end
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_the_end'
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_the_end' in 0.00s
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_the_end'
-[00:12:45] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_the_end'
-[00:12:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
-[00:12:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[00:12:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[00:12:45] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
-[00:12:45] [Server thread/INFO]: Waiting for all RegionFile I/O tasks to complete...
-[00:12:45] [Server thread/INFO]: All RegionFile I/O tasks to complete
-[00:12:45] [Server thread/INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
-[00:12:45] [Server thread/INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
+[08:58:53] [ServerMain/INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.9+10-LTS; Eclipse Adoptium Temurin-21.0.9+10) on Linux 6.18.3-arch1-1 (amd64)
+[08:58:53] [ServerMain/INFO]: [bootstrap] Loading Paper 1.21.11-88-main@8556cb4 (2026-01-05T09:39:44Z) for Minecraft 1.21.11
+[08:58:53] [ServerMain/INFO]: [PluginInitializerManager] Initializing plugins...
+[08:58:54] [ServerMain/INFO]: [PluginInitializerManager] Initialized 3 plugins
+[08:58:54] [ServerMain/INFO]: [PluginInitializerManager] Bukkit plugins (3):
+ - Essentials (2.22.0-dev+53-9ad754b), EssentialsSelectors (2.1.0), WorldEdit (7.3.18+7298-4383852)
+[08:58:58] [ServerMain/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[08:58:59] [ServerMain/INFO]: Found new data pack file/bukkit, loading it automatically
+[08:58:59] [ServerMain/INFO]: Found new data pack paper, loading it automatically
+[08:58:59] [ServerMain/INFO]: No existing world data, creating new world
+[08:58:59] [ServerMain/ERROR]: No key layers in MapLike[{}]
+[08:59:00] [ServerMain/INFO]: Loaded 1470 recipes
+[08:59:00] [ServerMain/INFO]: Loaded 1584 advancements
+[08:59:00] [ServerMain/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[08:59:00] [ServerMain/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 256.6ms
+[08:59:00] [Server thread/INFO]: Starting minecraft server version 1.21.11
+[08:59:00] [Server thread/INFO]: Loading properties
+[08:59:00] [Server thread/INFO]: This server is running Paper version 1.21.11-88-main@8556cb4 (2026-01-05T09:39:44Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[08:59:00] [Server thread/INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[08:59:00] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[08:59:00] [Server thread/INFO]: Using 4 threads for Netty based IO
+[08:59:01] [Server thread/INFO]: [MoonriseCommon] Paper is using 3 worker threads, 1 I/O threads
+[08:59:01] [Server thread/INFO]: Default game type: SURVIVAL
+[08:59:01] [Server thread/INFO]: Generating keypair
+[08:59:01] [Server thread/INFO]: Starting Minecraft server on *:25565
+[08:59:01] [Server thread/INFO]: Paper: Using libdeflate (Linux x86_64) compression from Velocity.
+[08:59:01] [Server thread/INFO]: Paper: Using OpenSSL 3.x.x (Linux x86_64) cipher from Velocity.
+[08:59:01] [Server thread/INFO]: [WorldEdit] Loading server plugin WorldEdit v7.3.18+7298-4383852
+[08:59:02] [Server thread/INFO]: Got request to register class com.sk89q.worldedit.bukkit.BukkitServerInterface with WorldEdit [com.sk89q.worldedit.extension.platform.PlatformManager@34dc5651]
+[08:59:02] [Server thread/INFO]: [EssentialsSelectors] Loading server plugin EssentialsSelectors v2.1.0
+[08:59:02] [Server thread/INFO]: [Essentials] Loading server plugin Essentials v2.22.0-dev+53-9ad754b
+[08:59:02] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[08:59:02] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v7.3.18+7298-4383852
+[08:59:02] [Server thread/INFO]: Registering commands with com.sk89q.worldedit.bukkit.BukkitServerInterface
+[08:59:02] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
+[08:59:02] [Server thread/INFO]: Using com.sk89q.worldedit.bukkit.adapter.impl.v1_21_11.PaperweightAdapter as the Bukkit adapter
+[08:59:03] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[08:59:03] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[08:59:03] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[08:59:03] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[08:59:03] [Server thread/INFO]: Preparing level "world"
+[08:59:03] [Server thread/ERROR]: No key layers in MapLike[{}]
+[08:59:04] [Server thread/INFO]: Selecting spawn point for world 'minecraft:overworld'...
+[08:59:04] [Server thread/INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+[08:59:04] [Server thread/INFO]: Preparing spawn area: 100%
+[08:59:04] [Server thread/INFO]: Prepared spawn area in 361 ms
+[08:59:04] [Server thread/INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+[08:59:04] [Server thread/INFO]: Prepared spawn area in 0 ms
+[08:59:04] [Server thread/INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+[08:59:04] [Server thread/INFO]: Prepared spawn area in 0 ms
+[08:59:04] [Server thread/INFO]: Done preparing level "world" (0.802s)
+[08:59:04] [Server thread/INFO]: [EssentialsSelectors] Enabling EssentialsSelectors v2.1.0
+[08:59:04] [Server thread/INFO]: [Essentials] Enabling Essentials v2.22.0-dev+53-9ad754b
+[08:59:04] [Server thread/WARN]: [Essentials] Version mismatch! Please update EssentialsSelectors to the same version.
+[08:59:04] [Server thread/INFO]: [Essentials] Attempting to convert old kits in config.yml to new kits.yml
+[08:59:04] [Server thread/INFO]: [Essentials] No kits found to migrate.
+[08:59:04] [Server thread/INFO]: [Essentials] Selected 1.12.2+ Player Locale Provider as the provider for PlayerLocaleProvider
+[08:59:04] [Server thread/INFO]: [Essentials] Selected Paper Serialization Provider as the provider for SerializationProvider
+[08:59:04] [Server thread/INFO]: [Essentials] Selected Legacy Biome Name Provider as the provider for BiomeNameProvider
+[08:59:04] [Server thread/INFO]: [Essentials] Selected Paper Server State Provider as the provider for ServerStateProvider
+[08:59:04] [Server thread/INFO]: [Essentials] Selected 1.21+ InventoryView Interface ABI Provider as the provider for InventoryViewProvider
+[08:59:04] [Server thread/INFO]: [Essentials] Selected 1.21.4+ Sync Commands Provider as the provider for SyncCommandsProvider
+[08:59:04] [Server thread/INFO]: [Essentials] Selected Reflection Formatted Command Alias Provider as the provider for FormattedCommandAliasProvider
+[08:59:04] [Server thread/INFO]: [Essentials] Selected Paper Biome Key Provider as the provider for BiomeKeyProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected 1.13+ Spawn Egg Provider as the provider for SpawnEggProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected 1.11+ Item Unbreakable Provider as the provider for ItemUnbreakableProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected Paper Container Provider as the provider for ContainerProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected 1.20.4+ Damage Event Provider as the provider for DamageEventProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected Reflection Online Mode Provider as the provider for OnlineModeProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected Paper Known Commands Provider as the provider for KnownCommandsProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected Paper Material Tag Provider as the provider for MaterialTagProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected 1.14+ Sign Data Provider as the provider for SignDataProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected 1.14.4+ Persistent Data Container Provider as the provider for PersistentDataProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected 1.20.5+ Banner Data Provider as the provider for BannerDataProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected 1.8.3+ Spawner Item Provider as the provider for SpawnerItemProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected 1.12+ Spawner Block Provider as the provider for SpawnerBlockProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected Paper Tick Count Provider as the provider for TickCountProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected 1.17.1+ World Info Provider as the provider for WorldInfoProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Selected 1.20.6+ Potion Meta Provider as the provider for PotionMetaProvider
+[08:59:05] [Server thread/INFO]: [Essentials] Loaded 46309 items from items.json.
+[08:59:05] [Server thread/INFO]: [Essentials] Using locale en_US
+[08:59:05] [Server thread/INFO]: [Essentials] ServerListPingEvent: Spigot iterator API
+[08:59:05] [Server thread/INFO]: [Essentials] Starting Metrics. Opt-out using the global bStats config.
+[08:59:05] [Server thread/INFO]: [Essentials] Using superperms-based permissions.
+[08:59:05] [Server thread/INFO]: [spark] Starting background profiler...
+[08:59:05] [Server thread/INFO]: Starting remote control listener
+[08:59:05] [Server thread/INFO]: Thread RCON Listener started
+[08:59:05] [Server thread/INFO]: RCON running on 0.0.0.0:25575
+[08:59:05] [Server thread/INFO]: Running delayed init tasks
+[08:59:05] [Craft Scheduler Thread - 3 - Essentials/INFO]: [Essentials] Fetching version information...
+[08:59:05] [Server thread/INFO]: Done (12.787s)! For help, type "help"
+[08:59:05] [User Authenticator #0/INFO]: UUID of player luca is 3f8ee265-be64-3acc-bf1c-59c00bbe2c6e
+[08:59:05] [Paper Async Task Handler Thread - 1/INFO]: *** Currently you are 4 build(s) behind ***
+[08:59:05] [Paper Async Task Handler Thread - 1/INFO]: *** It is highly recommended to download the latest build from https://papermc.io/downloads/paper ***
+[08:59:06] [Craft Scheduler Thread - 3 - Essentials/WARN]: [Essentials] You're 2 EssentialsX dev build(s) out of date!
+[08:59:06] [Craft Scheduler Thread - 3 - Essentials/WARN]: [Essentials] Download it here: https://essentialsx.net/downloads.html
+[08:59:07] [Server thread/INFO]: luca joined the game
+[08:59:07] [Server thread/INFO]: luca[/127.0.0.1:52120] logged in with entity id 1 at ([world]7.5, -60.0, 4.5)
+[08:59:12] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[08:59:12] [WorldEdit Task Executor - 0/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[08:59:18] [Server thread/INFO]: luca issued server command: //paste -a
+[08:59:25] [Server thread/INFO]: luca issued server command: /gamemode creative
+[09:05:53] [Server thread/INFO]: luca issued server command: //undo
+[09:05:56] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[09:05:57] [WorldEdit Task Executor - 1/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[09:05:59] [Server thread/INFO]: luca issued server command: //paste -a
+[09:06:55] [Server thread/INFO]: luca issued server command: /difficulty peaceful
+[09:06:55] [Server thread/INFO]: [luca: The difficulty has been set to Peaceful]
+[09:27:37] [Server thread/INFO]: luca lost connection: Disconnected
+[09:27:37] [Server thread/INFO]: luca left the game
+[09:28:25] [User Authenticator #1/INFO]: UUID of player luca is 3f8ee265-be64-3acc-bf1c-59c00bbe2c6e
+[09:28:25] [Server thread/INFO]: luca joined the game
+[09:28:25] [Server thread/INFO]: luca[/127.0.0.1:41704] logged in with entity id 1313 at ([world]90.67381572231449, -54.95688649856792, 236.70543590486102)
+[09:40:48] [Server thread/INFO]: luca issued server command: //undo
+[09:40:53] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[09:40:53] [WorldEdit Task Executor - 2/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[09:40:55] [Server thread/INFO]: luca issued server command: //paste -a
+[09:43:06] [Server thread/INFO]: luca issued server command: //undo
+[09:43:08] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[09:43:08] [WorldEdit Task Executor - 3/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[09:43:09] [Server thread/INFO]: luca issued server command: //paste -a
+[09:50:17] [Server thread/INFO]: luca issued server command: //undo
+[09:50:20] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[09:50:20] [WorldEdit Task Executor - 4/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[09:50:21] [Server thread/INFO]: luca issued server command: //paste -a
+[09:52:17] [Server thread/INFO]: luca issued server command: //undo
+[09:52:19] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[09:52:19] [WorldEdit Task Executor - 5/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[09:52:20] [Server thread/INFO]: luca issued server command: //paste -a
+[09:53:08] [Server thread/INFO]: luca issued server command: //undo
+[09:53:10] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[09:53:10] [WorldEdit Task Executor - 5/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[09:53:11] [Server thread/INFO]: luca issued server command: //paste -a
+[09:59:54] [Server thread/INFO]: luca issued server command: //undo
+[09:59:59] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[09:59:59] [WorldEdit Task Executor - 6/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:00:00] [Server thread/INFO]: luca issued server command: //paste -a
+[10:00:50] [Server thread/INFO]: luca issued server command: //undo
+[10:00:52] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:00:52] [WorldEdit Task Executor - 6/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:00:54] [Server thread/INFO]: luca issued server command: //paste -a
+[10:01:04] [Server thread/INFO]: luca issued server command: /time set day
+[10:04:18] [Server thread/INFO]: luca issued server command: //undo
+[10:04:21] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:04:21] [WorldEdit Task Executor - 7/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:04:23] [Server thread/INFO]: luca issued server command: //paste -a
+[10:10:12] [Server thread/INFO]: luca issued server command: //undo
+[10:10:13] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:10:13] [WorldEdit Task Executor - 8/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:10:15] [Server thread/INFO]: luca issued server command: //paste -a
+[10:18:25] [Server thread/INFO]: luca issued server command: //undo
+[10:18:28] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:18:28] [WorldEdit Task Executor - 9/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:18:29] [Server thread/INFO]: luca issued server command: //paste -a
+[10:19:42] [Server thread/INFO]: luca issued server command: //undo
+[10:19:44] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:19:44] [WorldEdit Task Executor - 10/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:19:45] [Server thread/INFO]: luca issued server command: //paste -a
+[10:23:48] [Server thread/INFO]: luca issued server command: //undo
+[10:23:50] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:23:50] [WorldEdit Task Executor - 11/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:23:52] [Server thread/INFO]: luca issued server command: //paste -a
+[10:23:56] [Server thread/INFO]: luca issued server command: //undo
+[10:24:09] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:24:09] [WorldEdit Task Executor - 11/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:24:10] [Server thread/INFO]: luca issued server command: //paste -a
+[10:25:21] [Server thread/INFO]: luca issued server command: //undo
+[10:25:23] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:25:23] [WorldEdit Task Executor - 12/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:25:24] [Server thread/INFO]: luca issued server command: //paste -a
+[10:37:23] [Server thread/INFO]: luca issued server command: //undo
+[10:37:25] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:37:25] [WorldEdit Task Executor - 13/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:37:28] [Server thread/INFO]: luca issued server command: //paste -a
+[10:38:54] [Server thread/INFO]: luca issued server command: //undo
+[10:39:00] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:39:01] [WorldEdit Task Executor - 14/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:39:02] [Server thread/INFO]: luca issued server command: //paste -a
+[10:40:17] [Server thread/INFO]: luca issued server command: //undo
+[10:40:20] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:40:20] [WorldEdit Task Executor - 15/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:40:22] [Server thread/INFO]: luca issued server command: //paste -a
+[10:42:52] [Server thread/INFO]: luca issued server command: //undo
+[10:42:56] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:42:56] [WorldEdit Task Executor - 16/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:42:58] [Server thread/INFO]: luca issued server command: //paste -a
+[10:47:30] [Server thread/INFO]: luca issued server command: //undo
+[10:47:33] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:47:33] [WorldEdit Task Executor - 17/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:47:34] [Server thread/INFO]: luca issued server command: //paste -a
+[10:49:18] [Server thread/INFO]: luca issued server command: //undo
+[10:49:20] [Server thread/INFO]: luca issued server command: //schem load devschematics/redeploy
+[10:49:20] [WorldEdit Task Executor - 18/INFO]: luca loaded /home/sainenco/Code/VerilogToRedstone/devschematics/redeploy.schematic
+[10:49:22] [Server thread/INFO]: luca issued server command: //paste -a
+[10:50:36] [Server thread/INFO]: luca lost connection: Disconnected
+[10:50:36] [Server thread/INFO]: luca left the game
+[10:50:45] [Server thread/INFO]: Stopping the server
+[10:50:45] [Server thread/INFO]: Stopping server
+[10:50:45] [Server thread/INFO]: [Essentials] Disabling Essentials v2.22.0-dev+53-9ad754b
+[10:50:45] [Server thread/INFO]: [EssentialsSelectors] Disabling EssentialsSelectors v2.1.0
+[10:50:45] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v7.3.18+7298-4383852
+[10:50:45] [Server thread/INFO]: Unregistering com.sk89q.worldedit.bukkit.BukkitServerInterface from WorldEdit
+[10:50:45] [Server thread/INFO]: Saving players
+[10:50:45] [Server thread/INFO]: Saving worlds
+[10:50:45] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world'
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Saved 1377 block chunks, 487 entity chunks, 27 poi chunks in world 'world' in 0.19s
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world'
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world'
+[10:50:45] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_nether]'/minecraft:the_nether
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nether'
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_nether' in 0.00s
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nether'
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nether'
+[10:50:45] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_the_end]'/minecraft:the_end
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_the_end'
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_the_end' in 0.00s
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_the_end'
+[10:50:45] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_the_end'
+[10:50:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[10:50:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[10:50:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[10:50:45] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+[10:50:45] [Server thread/INFO]: Waiting for all RegionFile I/O tasks to complete...
+[10:50:45] [Server thread/INFO]: All RegionFile I/O tasks to complete
+[10:50:45] [Server thread/INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+[10:50:45] [Server thread/INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...

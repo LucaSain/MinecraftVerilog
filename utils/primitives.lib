@@ -1,0 +1,51 @@
+library(minecraft) {
+  /* 1. Define the NAND Gate (The Workhorse) */
+    cell(NOR) {
+    area: 2; /* Smaller than NAND! */
+    pin(A) { direction: input; }
+    pin(B) { direction: input; }
+    pin(Y) { direction: output;
+             function: "((A + B)')"; }
+  }
+
+  /* 2. Define the NOT Gate */
+  cell(NOT) {
+    area: 2;
+    pin(A) { direction: input; }
+    pin(Y) { direction: output;
+              function: "A'"; }
+  }
+
+
+  /* 4. Define a D-Flip-Flop (Crucial for sequential logic) */
+  cell(DFF) {
+    area: 10;
+    ff(IQ, IQN) { clocked_on: C;
+                  next_state: D; }
+    pin(C) { direction: input; clock: true; }
+    pin(D) { direction: input; }
+    pin(Q) { direction: output;
+             function: "IQ"; }
+  }
+  cell(BUF) {
+    area: 2;  /* Repeaters are small */
+    pin(A) { direction: input; }
+    pin(Y) { direction: output;
+             function: "A"; }
+  }
+
+  /* 6. Define Constant 0 (Ground) - Optional but good for safety */
+  cell(TIELO) {
+    area: 0;
+    pin(Y) { direction: output;
+             function: "0"; }
+  }
+
+  /* 7. Define Constant 1 (Redstone Block) - Optional but good for safety */
+  cell(TIEHI) {
+    area: 1;
+    pin(Y) { direction: output;
+             function: "1"; }
+  }
+
+}
