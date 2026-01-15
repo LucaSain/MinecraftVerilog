@@ -1,9 +1,8 @@
 import amulet
+import self
 from amulet.api.block import Block
 from amulet.api.selection import SelectionGroup, SelectionBox
 from amulet.api.level import BaseLevel
-from amulet.level.formats.schematic import SchematicFormat  # For older .schematic
-
 
 # For modern .schem (Sponge), Amulet handles it via its Construction format usually,
 # but exporting directly to a structure file is possible.

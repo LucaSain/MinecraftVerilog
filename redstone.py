@@ -12,12 +12,6 @@ from amulet.api.selection import SelectionGroup, SelectionBox
 from amulet.api.level import Structure
 from amulet.level.formats.schematic import SchematicFormatWrapper
 
-
-
-
-
-
-
 def rotate_vector(x: int, z: int, rotation: int) -> Tuple[int, int]:
     """Rotates a vector (position or direction) by 90 deg steps."""
     rotation = rotation % 4

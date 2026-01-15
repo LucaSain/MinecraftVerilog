@@ -1,4 +1,4 @@
-module counter (
+    module counter (
     input clk,      // Clock signal
     input rst,      // Reset signal (Active High)
     output reg [3:0] out // 4-bit Output (0 to 15)
