@@ -1,0 +1,36 @@
+{
+  "stats": {
+    "minecraft:custom": {
+      "minecraft:time_since_rest": 188971,
+      "minecraft:walk_one_cm": 12398,
+      "minecraft:leave_game": 5,
+      "minecraft:play_time": 188971,
+      "minecraft:damage_dealt": 10,
+      "minecraft:jump": 98,
+      "minecraft:time_since_death": 188971,
+      "minecraft:drop": 3,
+      "minecraft:sprint_one_cm": 9302,
+      "minecraft:total_world_time": 188971,
+      "minecraft:fly_one_cm": 413726,
+      "minecraft:crouch_one_cm": 876,
+      "minecraft:sneak_time": 2405
+    },
+    "minecraft:used": {
+      "minecraft:stone": 1,
+      "minecraft:comparator": 3,
+      "minecraft:redstone_torch": 7,
+      "minecraft:redstone": 9,
+      "minecraft:copper_bulb": 1
+    },
+    "minecraft:picked_up": {
+      "minecraft:slime_ball": 12,
+      "minecraft:redstone": 2
+    },
+    "minecraft:dropped": {
+      "minecraft:stone": 1,
+      "minecraft:slime_ball": 1,
+      "minecraft:redstone": 1
+    }
+  },
+  "DataVersion": 4671
+}

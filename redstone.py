@@ -10,7 +10,7 @@ from amulet.api.block import Block
 from amulet.api.data_types import BlockCoordinates
 from amulet.api.selection import SelectionGroup, SelectionBox
 from amulet.api.level import Structure
-from amulet.level.formats.schematic import SchematicFormatWrapper
+from amulet.level.formats.sponge_schem import SpongeSchemFormatWrapper
 
 def rotate_vector(x: int, z: int, rotation: int) -> Tuple[int, int]:
     """Rotates a vector (position or direction) by 90 deg steps."""
@@ -70,41 +70,43 @@ class AmuletSchematic:
         self.max_coords[1] = max(self.max_coords[1], y)
         self.max_coords[2] = max(self.max_coords[2], z)
         self._blocks[(x, y, z)] = Block.from_string_blockstate(block_str)
+        if block_str == "minecraft:copper_bulb":
+            print(Block.from_string_blockstate("minecraft:copper_block"))
 
     def save(self, folder_path, file_name):
         if not self._blocks: return
         if not os.path.exists(folder_path): os.makedirs(folder_path)
-        full_path = os.path.join(folder_path, f"{file_name}.schematic")
 
-        # 1. Calculate Dimensions
+        # 1. Use .schem extension (critical for 1.21 support)
+        full_path = os.path.join(folder_path, f"{file_name}.schem")
+
+        # 2. Calculate Bounds
         width = int(self.max_coords[0] - self.min_coords[0]) + 1
         height = int(self.max_coords[1] - self.min_coords[1]) + 1
         length = int(self.max_coords[2] - self.min_coords[2]) + 1
-
         ox, oy, oz = int(self.min_coords[0]), int(self.min_coords[1]), int(self.min_coords[2])
 
         selection = SelectionGroup([SelectionBox((0, 0, 0), (width, height, length))])
 
-        # 2. Initialize File (Create Headers & Bounds)
-        # We must open, save, and then CLOSE it immediately.
-        # This prevents the 'ObjectReadError' when Structure tries to open it again.
-        wrapper = SchematicFormatWrapper(full_path)
-        wrapper.create_and_open("java", (1, 20, 1), bounds=selection, overwrite=True)
+        # 3. INITIALIZE FILE (The Fix)
+        # We create the file headers and immediately close the wrapper.
+        wrapper = SpongeSchemFormatWrapper(full_path)
+        wrapper.create_and_open("java", (1, 21, 0), bounds=selection, overwrite=True)
         wrapper.save()
         wrapper.close()
 
-        # 3. Open with Structure (High-Level API)
-        # We create a new wrapper instance for Structure to use
-        wrapper_reopen = SchematicFormatWrapper(full_path)
+        # 4. RE-OPEN WITH STRUCTURE
+        # Now we create a fresh wrapper instance for the Structure class to use.
+        # Structure() calls .open() internally, so this wrapper must be closed initially.
+        wrapper_reopen = SpongeSchemFormatWrapper(full_path)
         struct = Structure(full_path, wrapper_reopen)
 
         dim = struct.dimensions[0]  # Usually 'main'
 
-        # 4. Place Blocks
+        # 5. Place Blocks
         for (bx, by, bz), block in self._blocks.items():
-            # Convert absolute coords to schematic-relative
             lx, ly, lz = int(bx - ox), int(by - oy), int(bz - oz)
-            struct.set_version_block(lx, ly, lz, dim, ("java", (1, 21, 4)), block)
+            struct.set_version_block(lx, ly, lz, dim, ("java", (1,21, 4)), block)
 
         struct.save()
         struct.close()
@@ -480,28 +482,49 @@ class RedstoneFactory:
                     if schem_wrapper.is_empty((x, y_fill, z)):
                         schem_wrapper.setBlock((x, y_fill, z), "minecraft:stone")
 
-        # 3. OBSTACLE GRID (With 4-Block Component Padding)
+        # 3. OBSTACLE GRID (With Increased Gate Padding)
         print("Calculating 3D Obstacle Grid...")
         grid_3d = np.zeros((width, NUM_LAYERS, length), dtype=int)
 
-        COMPONENT_PADDING = 4  # Expanded to 4 as requested
+        # Increased padding to prevent artifacts near gates
+        COMPONENT_PADDING = 6
 
         for node in self.graph.nodes:
             bbox = node.get_bounding_box()
-
             # Calculate padded bounds (clamped to grid size)
             sx = max(0, bbox.min_x - min_x - COMPONENT_PADDING)
             ex = min(width, bbox.max_x - min_x + COMPONENT_PADDING)
             sz = max(0, bbox.min_z - min_z - COMPONENT_PADDING)
             ez = min(length, bbox.max_z - min_z + COMPONENT_PADDING)
 
-            # Block Layer 0 AND Layer 1 around components.
-            grid_3d[sx:ex, 0:2, sz:ez] = 1
+            # Block Layers 0, 1, and 2 around components to create a "Keep Out" zone
+            grid_3d[sx:ex, 0:3, sz:ez] = 1
+
+        # ==========================================
+        # 3.5 PRE-RESERVE VERTICAL SOCKETS
+        # ==========================================
+        print("Reserving Vertical Socket Channels...")
+        active_socket_locs = set()
+        for node in self.graph.nodes:
+            for edge in node.edges:
+                target_node, src_pin_name, tgt_pin_name, _ = edge
+                start_pos, _ = node.get_global_socket(src_pin_name)
+                active_socket_locs.add((start_pos[0], start_pos[2]))
+                end_pos, _ = target_node.get_global_socket(tgt_pin_name)
+                active_socket_locs.add((end_pos[0], end_pos[2]))
+
+        for (sx, sz) in active_socket_locs:
+            gx, gz = sx - min_x, sz - min_z
+            for dx in [-1, 0, 1]:
+                for dz in [-1, 0, 1]:
+                    nx, nz = gx + dx, gz + dz
+                    if 0 <= nx < width and 0 <= nz < length:
+                        grid_3d[nx, :, nz] = 1
 
         router = AStarRouter()
 
         # ==========================================
-        # 5. TRACE UNDERGROUND CLOCK
+        # 5. TRACE UNDERGROUND CLOCK (Restored)
         # ==========================================
         print("Tracing underground clock...")
         clock_grid = np.zeros((width, NUM_LAYERS, length), dtype=int)
@@ -597,7 +620,7 @@ class RedstoneFactory:
                         schem_wrapper.setBlock((wx, 3, wz), "minecraft:redstone_wire")
 
         # ==========================================
-        # 6. ROUTE LOGIC SIGNALS (FAN-OUT + 3D + PADDING + OBSERVERS)
+        # 6. ROUTE LOGIC SIGNALS
         # ==========================================
         print("Routing Logic Signals (3D Mode with Fan-Out & Observer Towers)...")
 
@@ -640,21 +663,14 @@ class RedstoneFactory:
                         schem_wrapper.setBlock((bus_x, BASE_Y - 1, bus_z), wool_block)
                         schem_wrapper.setBlock((bus_x, BASE_Y, bus_z), "minecraft:redstone_wire")
 
-                        # Mark Bus + Padding in Global Grid
+                        # Mark Bus in Grid
                         bgx, bgz = bus_x - min_x, bus_z - min_z
                         if 0 <= bgx < width and 0 <= bgz < length:
-                            grid_3d[bgx, 0, bgz] = 1
-                            for px, pz in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-                                if 0 <= bgx + px < width and 0 <= bgz + pz < length:
-                                    grid_3d[bgx + px, 0, bgz + pz] = 1
-
-                                    # --- SOCKET OBSTACLE MARKING ---
-                            # Mark the vertical column above the socket as occupied with padding
-                            # This treats the socket connection as a "virtual tower" that others must avoid
-                            grid_3d[bgx, 1, bgz] = 1
-                            for px, pz in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-                                if 0 <= bgx + px < width and 0 <= bgz + pz < length:
-                                    grid_3d[bgx + px, 1, bgz + pz] = 1
+                            for layer_idx in [0, 1]:
+                                for px in [-1, 0, 1]:
+                                    for pz in [-1, 0, 1]:
+                                        if 0 <= bgx + px < width and 0 <= bgz + pz < length:
+                                            grid_3d[bgx + px, layer_idx, bgz + pz] = 1
 
                 # --- TARGET OFFSET ---
                 target_offset_x, target_offset_z = 0, 0
@@ -668,31 +684,23 @@ class RedstoneFactory:
                     (end_pos[2] + target_offset_z) - min_z
                 )
 
-                # 2. Prepare Grid & Punch Safe Zones
+                # 2. Prepare Grid & UNLOCK Reserved Spots
                 current_grid = grid_3d.copy()
 
-                def punch_safety_zone(gx, gz):
+                def unlock_reserved_socket(gx, gz):
                     if not (0 <= gx < width and 0 <= gz < length): return
-                    # Clear Chimney
                     current_grid[gx, :, gz] = 0
-                    # Clear Neighbors on Lower Layers
-                    for px, pz in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-                        nx, nz = gx + px, gz + pz
-                        if 0 <= nx < width and 0 <= nz < length:
-                            current_grid[nx, 0, nz] = 0
-                            current_grid[nx, 1, nz] = 0
+                    for dx in [-1, 0, 1]:
+                        for dz in [-1, 0, 1]:
+                            nx, nz = gx + dx, gz + dz
+                            if 0 <= nx < width and 0 <= nz < length:
+                                current_grid[nx, :, nz] = 0
 
-                punch_safety_zone(start_tuple[0], start_tuple[2])
-                punch_safety_zone(end_tuple[0], end_tuple[2])
+                unlock_reserved_socket(start_tuple[0], start_tuple[2])
+                unlock_reserved_socket(end_tuple[0], end_tuple[2])
 
                 # 3. Find 3D Path
-                path_indices = router.find_path(
-                    current_grid,
-                    start_tuple,
-                    end_tuple,
-                    start_socket_def,
-                    end_socket_def
-                )
+                path_indices = router.find_path(current_grid, start_tuple, end_tuple, start_socket_def, end_socket_def)
 
                 if path_indices:
                     signal_dist = 0
@@ -702,8 +710,9 @@ class RedstoneFactory:
                         gx, layer, gz = path_indices[i]
                         wx, wz, wy = gx + min_x, gz + min_z, LAYER_HEIGHTS[layer]
 
-                        # Update Global Grid
+                        # Update Global Grid (Block current position)
                         grid_3d[gx, layer, gz] = 1
+                        # 4-neighbor padding for horizontal wires
                         for px, pz in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
                             if 0 <= gx + px < width and 0 <= gz + pz < length:
                                 grid_3d[gx + px, layer, gz + pz] = 1
@@ -712,40 +721,80 @@ class RedstoneFactory:
 
                         # 1. Vertical Transition (Observer Tower)
                         prev_layer = path_indices[i - 1][1] if i > 0 else layer
+
                         if prev_layer != layer:
-                            # Mark Padding for all intermediate layers
-                            l_start = min(prev_layer, layer)
-                            l_end = max(prev_layer, layer)
+                            # 1. CHECK CONTINUITY
+                            is_continuous_vertical = False
+                            if i < len(path_indices) - 1:
+                                n_gx, n_layer, n_gz = path_indices[i + 1]
+                                if n_gx == gx and n_gz == gz:
+                                    is_continuous_vertical = True
+
+                            # 2. MARK PADDING FOR VERTICAL TOWER (Strict 3x3)
+                            l_start, l_end = min(prev_layer, layer), max(prev_layer, layer)
                             for l_idx in range(l_start, l_end + 1):
                                 grid_3d[gx, l_idx, gz] = 1
-                                for px, pz in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-                                    if 0 <= gx + px < width and 0 <= gz + pz < length:
-                                        grid_3d[gx + px, l_idx, gz + pz] = 1
+                                for px in [-1, 0, 1]:
+                                    for pz in [-1, 0, 1]:
+                                        if 0 <= gx + px < width and 0 <= gz + pz < length:
+                                            grid_3d[gx + px, l_idx, gz + pz] = 1
 
+                            # 3. BUILD TOWER
                             low_y = min(LAYER_HEIGHTS[prev_layer], LAYER_HEIGHTS[layer])
                             high_y = max(LAYER_HEIGHTS[prev_layer], LAYER_HEIGHTS[layer])
-
                             is_ascending = layer > prev_layer
 
-                            # Place Top Wire ALWAYS
-                            schem_wrapper.setBlock((wx, high_y + 1, wz), "minecraft:redstone_wire")
-
                             if is_ascending:
-                                # Ascending: Base Wire -> Observer Facing Down (Output Up)
-                                for h in range(low_y + 1, high_y + 1):
-                                    schem_wrapper.setBlock((wx, h, wz), "minecraft:observer[facing=up]")
-                            else:
-                                # Descending: Top Observer Facing Up -> ... -> Copper Bulb
-                                # Top observer detects wire at high_y+1
-                                schem_wrapper.setBlock((wx, high_y, wz), "minecraft:observer[facing=down]")
-
-                                # Middle stack (if any)
-                                for h in range(high_y - 1, low_y, -1):
+                                # Ascending: Base Wire -> Observers Down
+                                range_limit = high_y + 1 if is_continuous_vertical else high_y
+                                for h in range(low_y + 1, range_limit):
                                     schem_wrapper.setBlock((wx, h, wz), "minecraft:observer[facing=down]")
 
-                                # Bottom: Copper Bulb
-                                schem_wrapper.setBlock((wx, low_y, wz), "minecraft:copper_bulb")
-                                pending_comparator = True
+                                if not is_continuous_vertical:
+                                    # Output Bulb at Top
+                                    schem_wrapper.setBlock((wx, high_y, wz), "minecraft:copper_bulb")
+                                    pending_comparator = True
+                            else:
+                                # Descending: Observers Up
+                                range_limit = low_y - 1 if is_continuous_vertical else low_y
+                                for h in range(high_y - 1, range_limit, -1):
+                                    schem_wrapper.setBlock((wx, h, wz), "minecraft:observer[facing=up]")
+
+                                if not is_continuous_vertical:
+                                    # --- UPDATED DESCENDING LOGIC ---
+                                    # 1. Output Bulb at Bottom (Destination)
+                                    schem_wrapper.setBlock((wx, low_y, wz), "minecraft:copper_bulb")
+                                    pending_comparator = True
+
+                                    # 2. Input Bulb at Top (Entry)
+                                    # Overwrite the wire that was placed at high_y
+                                    schem_wrapper.setBlock((wx, high_y, wz), "minecraft:copper_bulb")
+
+                                    # 3. Input Comparator
+                                    # Backtrack to place comparator feeding INTO the top bulb
+                                    if i >= 2:
+                                        p_gx, p_layer, p_gz = path_indices[i - 2]
+                                        # Ensure i-2 is on the same layer (horizontal approach)
+                                        if p_layer == prev_layer:
+                                            dx = gx - p_gx  # gx is current (Bulb), p_gx is previous (Comparator)
+                                            dz = gz - p_gz
+
+                                            c_facing = "north"
+                                            if dx == 1:
+                                                c_facing = "east"
+                                            elif dx == -1:
+                                                c_facing = "west"
+                                            elif dz == 1:
+                                                c_facing = "south"
+                                            elif dz == -1:
+                                                c_facing = "north"
+
+
+
+                                            p_wx, p_wy, p_wz = p_gx + min_x, LAYER_HEIGHTS[p_layer], p_gz + min_z
+                                            schem_wrapper.setBlock((p_wx, p_wy, p_wz),
+                                                                   f"minecraft:comparator[facing={c_facing},mode=compare]")
+                                    # --- NEW LOGIC END ---
 
                             signal_dist = 0
                             continue
@@ -754,40 +803,37 @@ class RedstoneFactory:
                         block_type = "minecraft:redstone_wire"
                         signal_dist += 1
 
-                        # Calculate Facing
                         facing = "north"
                         if i < len(path_indices) - 1:
                             nx, _, nz = path_indices[i + 1]
                             if nz - gz == 1:
-                                facing = "south"
-                            elif nz - gz == -1:
                                 facing = "north"
+                            elif nz - gz == -1:
+                                facing = "south"
                             elif nx - gx == 1:
-                                facing = "east"
-                            elif nx - gx == -1:
                                 facing = "west"
+                            elif nx - gx == -1:
+                                facing = "east"
                         elif i > 0:
                             px, _, pz = path_indices[i - 1]
                             if gz - pz == 1:
-                                facing = "south"
-                            elif gz - pz == -1:
                                 facing = "north"
+                            elif gz - pz == -1:
+                                facing = "south"
                             elif gx - px == 1:
-                                facing = "east"
-                            elif gx - px == -1:
                                 facing = "west"
+                            elif gx - px == -1:
+                                facing = "east"
 
                         if pending_comparator:
                             block_type = f"minecraft:comparator[facing={facing},mode=compare]"
                             pending_comparator = False
                             signal_dist = 0
-
                         elif signal_dist >= 15 and 0 < i < len(path_indices) - 1:
-                            pgx, _, pgz = path_indices[i - 1];
+                            pgx, _, pgz = path_indices[i - 1]
                             ngx, _, ngz = path_indices[i + 1]
                             if not ((gx - pgx != ngx - gx) or (gz - pgz != ngz - gz)):
                                 signal_dist = 0
-                                # Invert repeater facing
                                 r_facing = "north"
                                 if facing == "south":
                                     r_facing = "north"
@@ -799,15 +845,12 @@ class RedstoneFactory:
                                     r_facing = "east"
                                 block_type = f"minecraft:repeater[facing={r_facing}]"
 
-                        # Foundation + Wire
                         schem_wrapper.setBlock((wx, wy - 1, wz), wool_block)
                         schem_wrapper.setBlock((wx, wy, wz), block_type)
 
-                        # 3. Explicit Start Connection (Tip of Bus to Path)
                         if i == 0 and layer == 0 and usage_count == 0:
                             schem_wrapper.setBlock((wx, wy - 1, wz), wool_block)
                             schem_wrapper.setBlock((wx, wy, wz), "minecraft:redstone_wire")
-
                 else:
                     print(f"Failed to route signal from {node.type} to {target_node.type} (3D routing failed)")
 class AStarRouter:
@@ -962,7 +1005,7 @@ if __name__ == "__main__":
     factory = RedstoneFactory()
 
     nodes = parse_yosys_json("counter.json", factory)
-    optimizer = Optimizer(factory, bounds=(50, 50), startT=30000, endT=0.01, cooling_rate=0.995)
+    optimizer = Optimizer(factory, bounds=(60, 60), startT=30000, endT=0.01, cooling_rate=0.998)
     optimizer.run(steps=50000)
     schematic = AmuletSchematic()
     factory.compile_to_schematic(schematic)
